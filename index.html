@@ -45,6 +45,28 @@
             font-weight: 600;
             border-bottom: 2px solid #f78166;
         }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            right: 5px;
+            bottom: 0;
+            color: #74788d;
+            height: 60px;
+            font-size: 10px;
+        }
+
+        .footer a {
+            color: rgb(196, 196, 196);
+            border-bottom: 0;
+            padding-right: 10px;
+        }
+
+        .footer p {
+            font-size: 10px;
+        }
     </style>
 </head>
 
@@ -85,10 +107,13 @@
             邮箱
         </a>
     </p>
-    <p style="font-size: 10px; position: fixed; bottom: 5px; right: 10px;">
-        &copy; Johan
-        <span id="year">2021</span>
-    </p>
+    <footer class="footer">
+        <a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2021004970号-1</a>
+        <p>
+            &copy; Johan
+            <span id="year">2021</span>
+        </p>
+    </footer>
     <script type="text/javascript">
         document.getElementById('year').innerHTML = new Date().getFullYear()
     </script>
