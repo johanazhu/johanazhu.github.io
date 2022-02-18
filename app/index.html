@@ -19,23 +19,29 @@
     </div>
 
 </body>
-
 <!--微信分享 S-->
 <script>
 
     $(function () {
         var shareData = {
-            disabled: true,
-            title: '这是一个Node的分享标题',
-            desc: '这是一个Node的分享描述',
+            // disabled: true,
+            title: '这是一个Node的分享标题2',
+            desc: '这是一个Node的分享描述2',
             link: window.location.href,
-            imgUrl: 'https://forguo-1302175274.cos.ap-shanghai.myqcloud.com/wedding/logo-min.png'
+            type: 'link',
+            imgUrl: 'https://forguo-1302175274.cos.ap-shanghai.myqcloud.com/wedding/logo-min.png',
+            success: function () {
+                // 设置成功
+            }
         };
         var shareFnAndLocation = function () {
             //分享代码
             if (typeof wx != "undefined") {
                 $.ajax({
-                    url: '//www.azhubaby.com/common/wechat/sdk',
+                    // 本地
+                    // url: './common/wechat/sdk',
+                    // 开发
+                    url: 'http://wechat.azhubaby.com/common/wechat/sdk',
                     // url: '//www.forguo.cn/common/wechat/sdk',
                     // 云开发
                     // url: '//api.cloud-app.com.cn/common/wechat/sdk',
@@ -48,34 +54,22 @@
                     success: function (res) {
                         var data = res.data;
                         wx.config({
-                            debug: false,
+                            // debug: false,
+                            debug: true,
                             appId: data.appId,
                             timestamp: data.timestamp,
                             nonceStr: data.nonceStr,
                             signature: data.signature,
-                            jsApiList: [
+                            jsApiList: [,
                                 'onMenuShareTimeline',
                                 'onMenuShareAppMessage',
-                                'onMenuShareQQ',
-                                'onMenuShareWeibo',
-                                'onMenuShareQZone'
-                                // 'checkJsApi',
-                                // 'hideAllNonBaseMenuItem',
-                                // 'hideOptionMenu'
                             ]
                         });
                     }
                 });
                 wx.ready(function () {
-                    wx.onMenuShareAppMessage(shareData);
                     wx.onMenuShareTimeline(shareData);
-                    wx.onMenuShareQQ(shareData);
-                    wx.onMenuShareWeibo(shareData);
-                    wx.onMenuShareQZone(shareData);
-                    // wx.hideOptionMenu();
-                    // wx.hideAllNonBaseMenuItem({
-                    //    success: function () {}
-                    // });
+                    wx.onMenuShareAppMessage(shareData);
                 });
                 wx.error(function (res) {
                     alert(JSON.stringify(res));
